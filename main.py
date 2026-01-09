@@ -530,18 +530,9 @@ def main(page: ft.Page):
     page.fonts = {"RPG": "/rpg_font.ttf"}; page.theme = ft.Theme(font_family="RPG") 
     db = DatabaseManager(); session = {"user_id": None, "hero": None, "daily_msg": None}
     
-    try:
-        snd_levelup = ft.Audio(src="snd_levelup.mp3", autoplay=False)
-        snd_click = ft.Audio(src="snd_click.mp3", autoplay=False)
-        snd_coin = ft.Audio(src="snd_coin.mp3", autoplay=False)
-        page.overlay.extend([snd_levelup, snd_click, snd_coin])
-    except: pass
+    # --- ÁUDIO DESATIVADO TEMPORARIAMENTE (Evita erro no Android) ---
     def play_sound(type):
-        try:
-            if type == "lvl": snd_levelup.play()
-            elif type == "click": snd_click.play()
-            elif type == "coin": snd_coin.play()
-        except: pass
+        pass # Não faz nada, apenas evita erro no código
     
     def show_snack(msg, color="green"): page.snack_bar = ft.SnackBar(ft.Text(msg, font_family="RPG"), bgcolor=color); page.snack_bar.open = True; page.update()
     
